@@ -76,7 +76,7 @@ void ScreenScraper::getSearchResults(QList<GameEntry> &gameEntries,
     // If we had a failure, it is most likely API overload so give it
     // a second (or 5) before making another attempt.
     if(retries > 0) {
-	sleep(5);    
+	sleep(1);    
     }
 	  
     limiter.exec();

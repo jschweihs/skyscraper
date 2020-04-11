@@ -85,8 +85,8 @@ QByteArray NetComm::getRedirUrl()
 void NetComm::dataDownloaded(qint64 bytesReceived, qint64)
 {
   if(bytesReceived > MAXSIZE) {
+    printf("Size received: %llu\n", bytesReceived);
     printf("Retrieved data size exceeded maximum of 42 MB, cancelling network request...\n");
-    printf("Size received: %u", bytesReceived);
     reply->abort();
   }
 }

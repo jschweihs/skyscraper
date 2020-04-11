@@ -76,18 +76,20 @@ void ScreenScraper::getSearchResults(QList<GameEntry> &gameEntries,
     // If we had a failure, it is most likely API overload so give it
     // a second (or 5) before making another attempt.
     if(retries > 0) {
-	sleep(1);    
+	printf("Sleeping...");
+	sleep(1);
+	printf("Awake");
     }
 	  
     limiter.exec();
     manager.request(gameUrl);
     q.exec();
+	  printf("Request sent");
     data = manager.getData();
     
     QByteArray headerData = data.left(1024); // Minor optimization with minimal more RAM usage
     // Do error checks on headerData. It's more stable than checking the potentially faulty JSON
 	  
-	  printf("HeaderData: %s", headerData);
     if(headerData.isEmpty()) {
       printf("\033[1;33mRetrying request...\033[0m\n\n");
       continue;

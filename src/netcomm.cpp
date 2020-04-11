@@ -28,7 +28,7 @@
 #include <QUrl>
 #include <QNetworkRequest>
 
-#define MAXSIZE 64000000
+#define MAXSIZE 128000000
 
 NetComm::NetComm()
 {
@@ -86,7 +86,7 @@ void NetComm::dataDownloaded(qint64 bytesReceived, qint64)
 {
   if(bytesReceived > MAXSIZE) {
     printf("Size received: %llu\n", bytesReceived);
-    printf("Retrieved data size exceeded maximum of 42 MB, cancelling network request...\n");
+    printf("Retrieved data size exceeded maximum of 128 MB, cancelling network request...\n");
     reply->abort();
   }
 }

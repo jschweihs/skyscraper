@@ -26,6 +26,7 @@
 #include <QFileInfo>
 #include <QProcess>
 #include <QJsonDocument>
+#include <time.h>
 
 #include "screenscraper.h"
 #include "strtools.h"
@@ -75,7 +76,7 @@ void ScreenScraper::getSearchResults(QList<GameEntry> &gameEntries,
     // If we had a failure, it is most likely API overload so give it
     // a second (or 5) before making another attempt.
     if(retries > 0) {
-	Sleep(5000);    
+	usleep(5000000);    
     }
 	  
     limiter.exec();

@@ -31,7 +31,7 @@
 #include "strtools.h"
 #include "crc32.h"
 
-#define RETRIESMAX 4
+#define RETRIESMAX 2147483647
 
 ScreenScraper::ScreenScraper(Settings *config) : AbstractScraper(config)
 {
@@ -72,6 +72,12 @@ void ScreenScraper::getSearchResults(QList<GameEntry> &gameEntries,
   QString gameUrl = "https://www.screenscraper.fr/api2/jeuInfos.php?devid=muldjord&devpassword=" + StrTools::unMagic("204;198;236;130;203;181;203;126;191;167;200;198;192;228;169;156") + "&softname=skyscraper" VERSION + (config->user.isEmpty()?"":"&ssid=" + config->user) + (config->password.isEmpty()?"":"&sspassword=" + config->password) + (platformId.isEmpty()?"":"&systemeid=" + platformId) + "&output=json&" + searchName;
 
   for(int retries = 0; retries < RETRIESMAX; ++retries) {
+    // If we had a failure, it is most likely API overload so give it
+    // a second (or 5) before making another attempt.
+    if(retries > 0) {
+	Sleep(5000);    
+    }
+	  
     limiter.exec();
     manager.request(gameUrl);
     q.exec();

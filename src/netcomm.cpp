@@ -39,7 +39,6 @@ NetComm::NetComm()
 
 void NetComm::request(QString query, QString postData, QString headerKey, QString headerValue)
 {
-  printf("Making request...\n");
   QUrl url(query);
   QNetworkRequest request(url);
   request.setHeader(QNetworkRequest::UserAgentHeader, "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:74.0) Gecko/20100101 Firefox/74.0");
@@ -49,7 +48,7 @@ void NetComm::request(QString query, QString postData, QString headerKey, QStrin
   }
   
   if(postData.isEmpty()) {
-    printf("Empty post data...\n");
+    printf(".");
     reply = get(request);
   } else {
     reply = post(request, postData.toUtf8());

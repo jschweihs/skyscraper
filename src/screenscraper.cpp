@@ -83,7 +83,7 @@ void ScreenScraper::getSearchResults(QList<GameEntry> &gameEntries,
 	  
     limiter.exec();
 	  
-	  printf("Game url: %s\n", gameUrl);
+	  printf("Game url: %s\n", gameUrl.toStdString());
     manager.request(gameUrl);
     q.exec();
 	  printf("Request sent\n");

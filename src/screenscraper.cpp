@@ -82,10 +82,13 @@ void ScreenScraper::getSearchResults(QList<GameEntry> &gameEntries,
     }
 	  
     limiter.exec();
+	  
+	  printf("Game url: %s\n", gameUrl);
     manager.request(gameUrl);
     q.exec();
-	  printf("Request sent");
+	  printf("Request sent\n");
     data = manager.getData();
+	  printf("Data: %s\n", data);
     
     QByteArray headerData = data.left(1024); // Minor optimization with minimal more RAM usage
     // Do error checks on headerData. It's more stable than checking the potentially faulty JSON

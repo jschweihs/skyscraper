@@ -32,7 +32,7 @@
 #include "strtools.h"
 #include "crc32.h"
 
-#define RETRIESMAX 2147483647
+#define RETRIESMAX 20
 
 ScreenScraper::ScreenScraper(Settings *config) : AbstractScraper(config)
 {
